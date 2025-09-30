@@ -1,0 +1,19 @@
+﻿@page "/Privacy"
+@*@inject: DependencyInjection aber im Frontend*@
+@inject ILogger logger
+@{
+	ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
+
+@**********************************************************************@
+
+@*@functions: Bereich für Backendcode, falls es kein dediziertes Backendfile gibt*@
+@functions{
+	public void OnGet()
+	{
+		
+	}
+}

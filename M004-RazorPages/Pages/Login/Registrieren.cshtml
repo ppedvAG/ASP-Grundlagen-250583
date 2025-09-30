@@ -1,0 +1,18 @@
+﻿@*@page: Definiert die Route dieser Page*@
+@*Über die Program.cs (MapRazorPages()) werden die Routen "ausgeführt"*@
+@*Hier wird bei @page die Route als string angegeben*@
+
+@page "/Login/Register"
+@model RegistrierenModel
+
+<h2>Neuen User anlegen</h2>
+
+<form asp-page-handler="RegisterButton" method="post">
+	Username: <input type="text" name="user" />
+	<br />
+
+	Passwort: <input type="password" name="pw" />
+	<br />
+
+	<button type="submit">Registrieren</button>
+</form>
