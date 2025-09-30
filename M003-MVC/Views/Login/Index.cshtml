@@ -1,0 +1,21 @@
+﻿@*@model: Definiert, welchen Typen die Daten haben, die an das Frontend weitergegeben werden*@
+@model User
+
+<h2>Hallo @Model.Username</h2>
+
+@*******************************************************************@
+
+@*Kommentar*@
+
+@DateTime.Now  @*Einzeiliger C#-Codeblock*@
+
+@{
+	//Mehrzeiliger C#-Codeblock
+}
+
+@for (int i = 0; i < 10; i++)
+{
+	//Dynamisch HTML erzeugen
+	//Innerhalb von C#-Code kann HTML-Code verwendet werden
+	<p>@i</p>
+}

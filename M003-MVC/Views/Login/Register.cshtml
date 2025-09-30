@@ -1,0 +1,15 @@
+﻿<h2>Neuen User anlegen</h2>
+
+<form asp-action="RegisterButton" method="post">
+	@*asp-action: Leitet den User beim Button Klick an die entsprechende Methode im Controller weiter*@
+	@*Wenn der Button geklickt wird, werden Daten an das Backend weitergegeben*@
+	@*Die Daten innerhalb der Form werden über Parameter weitergegeben*@
+
+	Username: <input type="text" name="user"/> @*Über name= wird die Verbindung ins Backend (C#) hergestellt*@
+	<br />
+
+	Passwort: <input type="password" name="pw"/>
+	<br />
+
+	<button type="submit">Registrieren</button>
+</form>
