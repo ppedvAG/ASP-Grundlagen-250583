@@ -6,3 +6,12 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<cache expires-after="@TimeSpan.FromSeconds(10)">
+	@DateTime.Now
+</cache>
+
+<form method="post" enctype="multipart/form-data" asp-action="DateiUpload">
+	Datei auswählen: <input type="file" name="file"/>
+	<button type="submit">Hochladen</button>
+</form>

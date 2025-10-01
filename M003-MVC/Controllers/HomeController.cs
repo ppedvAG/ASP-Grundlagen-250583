@@ -4,28 +4,27 @@ using System.Diagnostics;
 
 namespace M003_MVC.Controllers;
 
-public class HomeController : Controller
+public class HomeController(ILogger<HomeController> logger) : Controller
 {
-	private readonly ILogger<HomeController> _logger;
+	public IActionResult Index() => View();
 
-	public HomeController(ILogger<HomeController> logger)
+	public IActionResult Privacy() => View();
+
+	public IActionResult DateiUpload(IFormFile file)
 	{
-		_logger = logger;
+		if (!Directory.Exists("Upload"))
+			Directory.CreateDirectory("Upload");
+
+		using Stream readStream = file.OpenReadStream();
+		using FileStream fs = new FileStream(Path.Combine("Upload", file.FileName), FileMode.Create);
+		readStream.CopyTo(fs);
+		fs.Flush();
+
+		return View("Index");
 	}
 
-	public IActionResult Index()
-	{
-		return View();
-	}
 
-	public IActionResult Privacy()
-	{
-		return View();
-	}
 
 	[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-	public IActionResult Error()
-	{
-		return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-	}
+	public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 }

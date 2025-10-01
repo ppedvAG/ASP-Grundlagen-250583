@@ -24,6 +24,18 @@ public class LoginController(List<User> users) : Controller //Primary Constructo
 	[HttpGet]
 	public IActionResult Index()
 	{
+		string? cookie = HttpContext.Request.Cookies["AngemeldetBleiben"];
+		if (cookie != null)
+		{
+			string[] data = cookie.Split(",");
+			User loggedIn = new User
+			{
+				Username = data[0],
+				Password = data[1]
+			};
+			return View(loggedIn);
+		}
+
 		return View();
 	}
 
@@ -81,7 +93,7 @@ public class LoginController(List<User> users) : Controller //Primary Constructo
 		return RedirectToAction("Login");
 	}
 
-	public IActionResult LoginButton(string user, string pw)
+	public IActionResult LoginButton(string user, string pw, string ab)
 	{
 		//Suche den User aus der Liste
 		User? foundUser = users.FirstOrDefault(u => u.Username == user);
@@ -90,6 +102,9 @@ public class LoginController(List<User> users) : Controller //Primary Constructo
 
 		if (foundUser.Password != pw)
 			return Forbid();
+
+		if (ab == "on")
+			HttpContext.Response.Cookies.Append("AngemeldetBleiben", $"{foundUser.Username},{foundUser.Password}");
 
 		//Username gefunden, Passwort korrekt
 		return View("Index", foundUser);
