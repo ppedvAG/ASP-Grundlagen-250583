@@ -1,0 +1,28 @@
+﻿@page "/Rechner"
+@model RechnerModel
+
+<form asp-page-handler="ZahlSetzen" method="post">
+	Anzahl Zahlen: <input type="number" name="zahl"/>
+	<br/>
+	<button type="submit">Speichern</button>
+</form>
+
+<br />
+<br />
+
+<form asp-page-handler="Berechne" method="post">
+	<select asp-items="@Html.GetEnumSelectList<Rechenoperation>().Skip(1)" name="op">
+		<option value="@Rechenoperation.Keine">Rechenart auswählen</option>
+	</select>
+
+	<br />
+
+	@for (int i = 0; i < Model.AnzWerte; i++)
+	{
+		<span>Zahl @(i + 1):</span>
+		<input type="number" name="zahlen"/>
+		<br/>
+	}
+
+	<button type="submit">Berechne</button>
+</form>
