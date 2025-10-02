@@ -1,0 +1,8 @@
+﻿@model (int, string)
+
+<h2>Neuer Inhalt für: @Model.Item2</h2>
+
+<form asp-action="InhaltSpeichern" asp-route-id="@Model.Item1">
+	Inhalt: <input type="text" name="inhalt"/>
+	<button type="submit">Speichern</button>
+</form>

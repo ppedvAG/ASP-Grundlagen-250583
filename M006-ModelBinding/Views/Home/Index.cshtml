@@ -1,0 +1,21 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@*asp-for: Verbindung zu dem Model*@
+@*Wenn die Daten angepasst werden, werden diese im Objekt auch geändert*@
+<form>
+	@*Aktualisierungen werden direkt in dem Objekt übernommen*@
+	<input asp-for="Username"/>
+	<input asp-for="Password"/>
+
+	@*Hier werden die Daten in der GUI angezeigt, aber nicht aktualisiert, wenn sie sich ändern*@
+	<input value="@Model.Username"/>
+	<input value="@Model.Password"/>
+</form>

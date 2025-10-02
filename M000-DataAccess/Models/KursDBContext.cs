@@ -8,14 +8,9 @@ namespace M000_DataAccess.Models;
 
 public partial class KursDBContext : DbContext
 {
-    public KursDBContext()
-    {
-    }
+    public KursDBContext() { }
 
-    public KursDBContext(DbContextOptions<KursDBContext> options)
-        : base(options)
-    {
-    }
+    public KursDBContext(DbContextOptions<KursDBContext> options) : base(options) { }
 
     public virtual DbSet<KursInhalte> KursInhalte { get; set; }
 
