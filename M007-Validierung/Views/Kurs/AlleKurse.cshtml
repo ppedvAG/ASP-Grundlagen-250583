@@ -1,0 +1,41 @@
+﻿@using M000_DataAccess.Models
+@model IQueryable<Kurse>
+
+@(ViewData["Title"] = "Alle Kurse")
+
+<h2>Alle Kurse</h2>
+
+<table>
+	<thead>
+		<tr>
+			<th>Titel</th>
+			<th>Dauer</th>
+			<th>Aktiv</th>
+			<th>Buttons</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (Kurse k in Model)
+		{
+			<tr>
+				<td>@k.Kursname</td>
+				<td>@($"{k.DauerInTagen} Tage")</td>
+				<td>@k.Aktiv</td>
+				<td>
+					@*asp-route-<Name>: Leitet den gegebenen Parameter an das Backend weiter*@
+					@*Bei einer Form (input type="Text") ist klar, was ans Backend weitergegeben wird*@
+					@*Hier haben wir einen Button -> Feld muss angegeben werden*@
+					<a asp-action="KursDetails" asp-route-id="@k.Id">
+						Details anzeigen
+					</a>
+					<a asp-action="NeuerInhalt" asp-route-id="@k.Id">
+						<button>Neuer Inhalt</button>
+					</a>
+					<a asp-action="KursnameBearbeiten" asp-route-id="@k.Id">
+						Name bearbeiten
+					</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

@@ -1,0 +1,19 @@
+﻿@using M000_DataAccess.Models
+@model (IQueryable<KursInhalte>, string)
+
+<h2>Details für: @Model.Item2</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Titel</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (KursInhalte k in Model.Item1)
+		{
+			<tr>
+				<td>@k.InhaltTitel</td>
+			</tr>
+		}
+	</tbody>
+</table>

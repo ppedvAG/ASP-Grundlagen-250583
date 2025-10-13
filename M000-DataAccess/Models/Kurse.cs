@@ -15,8 +15,8 @@ public partial class Kurse
     [Column("ID")]
     public int Id { get; set; }
 
-    [StringLength(100)]
-    [Unicode(false)]
+	[StringLength(100, MinimumLength = 5, ErrorMessage = "Der Kursname muss zw. 5 und 100 Zeichen haben!")] //ErrorMessageResourceName: Lokalisierung von Fehlermeldungen
+	[Unicode(false)]
     public string Kursname { get; set; }
 
     public int? DauerInTagen { get; set; }

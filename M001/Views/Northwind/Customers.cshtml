@@ -1,0 +1,50 @@
+﻿@model IQueryable<Customer>
+
+@{
+	ViewData["Title"] = "Alle Kunden";
+}
+
+<h2>Alle Kunden</h2>
+
+<form asp-action="KundenFiltern" method="post">
+	Filtern nach Land: @* <input type="text" name="land"/> *@
+	<select name="land" class="form-select form-select-lg">
+		@foreach (string s in ViewBag.Countries)
+		{
+			<option>@s</option>
+		}
+	</select>
+	<button type="submit" class="btn btn-primary">Filtern</button>
+</form>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>KundenID</th>
+			<th>Firmenname</th>
+			<th>Ansprechpartner</th>
+			<th>Adresse</th>
+			<th>Tel. Nr.</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@{int counter = 0;}
+		@foreach (Customer c in Model)
+		{
+			<tr class="@(counter % 2 == 0 ? "table-light" : "table-secondary")">
+				<td>@c.CustomerId</td>
+				<td>@c.CompanyName</td>
+				<td>@c.ContactName</td>
+				<td>@($"{c.Address} {c.City} {c.PostalCode} {c.Country}")</td>
+				<td>@c.Phone</td>
+				<td>
+					<a asp-action="BestellungenAnzeigen" asp-route-id="@c.CustomerId">
+						Bestellungen anzeigen
+					</a>
+				</td>
+			</tr>
+			counter++;
+		}
+	</tbody>
+</table>

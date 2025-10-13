@@ -18,7 +18,7 @@ public partial class KursInhalte
     [Column("KursID")]
     public int? KursId { get; set; }
 
-    [StringLength(100)]
+    [StringLength(100, MinimumLength = 5, ErrorMessage = "Der Kursinhalt muss zw. 5 und 100 Zeichen haben!")] //ErrorMessageResourceName: Lokalisierung von Fehlermeldungen
     [Unicode(false)]
     public string InhaltTitel { get; set; }
 

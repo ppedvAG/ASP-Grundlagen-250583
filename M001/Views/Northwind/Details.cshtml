@@ -1,0 +1,25 @@
+﻿@model IEnumerable<DetailsProducts>
+
+<h2>Alle Rechnungsposten</h2>
+
+<table>
+	<thead>
+		<tr>
+			<th>Produkt ID</th>
+			<th>Produktname</th>
+			<th>Stückpreis</th>
+			<th>Anzahl</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (DetailsProducts dp in Model)
+		{
+			<tr>
+				<td>@dp.ProductId</td>
+				<td>@dp.ProductName</td>
+				<td>@dp.UnitPrice</td>
+				<td>@dp.Quantity</td>
+			</tr>
+		}
+	</tbody>
+</table>

@@ -1,0 +1,33 @@
+﻿@using M000_DataAccess.Models
+@model Kurse
+
+<h2>Neuer Name für: @Model.Kursname</h2>
+
+@*
+	Validierung: Eingaben des Users prüfen
+	Wird über DataAnnotations gemacht
+	DataAnnotations werden auf den Properties in den Model Klassen angehängt
+	Im Frontend wird jquery.validation eingebunden, im Backend wird die Validierung über DataAnnotations durchgeführt
+	Fehlermeldung wird auch bei den DataAnnotations angegeben
+*@
+
+<form asp-action="NameAnpassen">
+	<input type="number" asp-for="@Model.Id" hidden="hidden"/>
+
+	Inhalt: <input type="text" asp-for="@Model.Kursname" />
+	<br/>
+	<span asp-validation-for="@Model.Kursname" />
+
+	<br />
+	<button type="submit">Speichern</button>
+</form>
+
+@*Section: Benannter Codeteil (keine weiteren Effekte)*@
+@*Wird verwendet, um Html-Bausteine zw. Views zu bewegen*@
+@*Siehe _Layout.cshtml (Zeile 48)*@
+@section Scripts
+{
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

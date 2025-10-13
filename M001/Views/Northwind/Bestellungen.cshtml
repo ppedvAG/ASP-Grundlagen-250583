@@ -1,0 +1,41 @@
+﻿@model IQueryable<Order>
+
+@{
+	ViewData["Title"] = "Alle Bestellungen";
+}
+
+<h2>Alle Bestellungen</h2>
+
+<table>
+	<thead>
+		<tr>
+			<th>Frachtkosten</th>
+			<th>Bestelldatum</th>
+			<th>Gewünschtes Lieferdatum</th>
+			<th>Tatsächliches Lieferdatum</th>
+			<th>Adresse</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (Order o in Model)
+		{
+			<tr>
+				<td>@o.Freight</td>
+				<td>@o.OrderDate</td>
+				<td>@o.RequiredDate</td>
+				<td>@o.ShippedDate</td>
+				<td>@($"{o.ShipAddress} {o.ShipCity} {o.ShipPostalCode} {o.ShipCountry}")</td>
+				<td>
+					<a asp-action="DetailsAnzeigen" asp-route-id="@o.OrderId">
+						Details anzeigen
+					</a>
+				</td>
+				<td>
+					<a asp-action="MitarbeiterAnzeigen" asp-route-id="@o.EmployeeId">
+						Mitarbeiter anzeigen
+					</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
